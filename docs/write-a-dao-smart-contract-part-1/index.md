@@ -323,7 +323,10 @@ func CreateGeneralProposal(_ realm, title, description string) uint64 {
     assertIsMember(caller)
 
     // Create a new proposal that uses the general definition
-    p, err := myDAO.Propose(caller, generalDefinition{})
+    p, err := myDAO.Propose(caller, generalDefinition{
+        title,
+        description,
+    })
     if err != nil {
         panic(err)
     }
