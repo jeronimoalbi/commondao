@@ -15,11 +15,13 @@ func (p generalDefinition) Body() string              { return p.description }
 func (generalDefinition) VotingPeriod() time.Duration { return time.Hour }
 
 func (generalDefinition) Tally(ctx commondao.VotingContext) (bool, error) {
-	if !commondao.IsQuorumReached(commondao.QuorumTwoThirds, ctx.VotingRecord, ctx.Members) {
+	// Check if a quorum of 50% has been met
+	if !commondao.IsQuorumReached(commondao.QuorumHalf, ctx.VotingRecord, ctx.Members) {
 		return false, commondao.ErrNoQuorum
 	}
 
-	c, success := commondao.SelectChoiceBySuperMajority(ctx.VotingRecord, ctx.Members.Size())
+	// Tally votes by absolute majority, which requires 51% votes
+	c, success := commondao.SelectChoiceByAbsoluteMajority(ctx.VotingRecord, ctx.Members.Size())
 	if success {
 		return c == commondao.ChoiceYes, nil
 	}

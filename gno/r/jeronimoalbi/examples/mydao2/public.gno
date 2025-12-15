@@ -27,9 +27,6 @@ func CreateGeneralProposal(title, description string) uint64 {
 		panic(err)
 	}
 
-	// Append the new proposal to the list of proposals
-	proposals = append(proposals, p)
-
 	return uint64(p.ID())
 }
 
@@ -65,9 +62,6 @@ func CreateModifyMembersProposal(newMembers, removeMembers string) uint64 {
 	if err != nil {
 		panic(err)
 	}
-
-	// Append the new proposal to the list of proposals
-	proposals = append(proposals, p)
 
 	return uint64(p.ID())
 }

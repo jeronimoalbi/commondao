@@ -27,9 +27,6 @@ func CreateGeneralProposal(title, description string) uint64 {
 		panic(err)
 	}
 
-	// Append the new proposal to the list of proposals
-	proposals = append(proposals, p)
-
 	return uint64(p.ID())
 }
 
