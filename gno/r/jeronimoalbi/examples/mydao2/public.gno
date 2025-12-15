@@ -133,16 +133,19 @@ func mustParseStringToAddresses(s string) []address {
 
 	var members []address
 	for _, raw := range strings.Split(s, "\n") {
+		// Remove empty leading and trailing spaces
 		raw = strings.TrimSpace(raw)
 		if raw == "" {
 			continue
 		}
 
+		// Cast the string into an address and make sure address has the right format
 		addr := address(raw)
 		if !addr.IsValid() {
 			panic("invalid address: " + addr.String())
 		}
 
+		// Add current address to the list of addresses
 		members = append(members, addr)
 	}
 	return members
