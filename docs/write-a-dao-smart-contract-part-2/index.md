@@ -183,7 +183,7 @@ To allow DAO members to create new _modify members_ proposals, define a
 // g187982000zsc493znqt828s90cmp6hcp2erhu6m
 // g1jg8mtutu9khhfwc4nxmuhcpftf0pajdhfvsqf5
 // ```
-func CreateModifyMembersProposal(newMembers, removeMembers string) uint64 {
+func CreateModifyMembersProposal(_ realm, newMembers, removeMembers string) uint64 {
     // Check that the original caller is a member of the DAO
     caller := runtime.OriginCaller()
     assertIsMember(caller)
@@ -217,7 +217,7 @@ To allow executing proposals define an `Execute()` function at the end of the `p
 
 ```go
 // Execute executes active proposals.
-func Execute(proposalID uint64) string {
+func Execute(_ realm, proposalID uint64) string {
     caller := runtime.OriginCaller()
     assertIsMember(caller)
 

@@ -313,7 +313,7 @@ import (
 // Arguments:
 // - title: A title for the proposal
 // - description: A description for the proposal
-func CreateGeneralProposal(title, description string) uint64 {
+func CreateGeneralProposal(_ realm, title, description string) uint64 {
     // Proposal description and title are required
     assertTitleIsNotEmpty(title)
     assertDescriptionIsNotEmpty(description)
@@ -343,7 +343,7 @@ To allow DAO members to vote on any type of proposal define a `Vote()` function 
 // Arguments:
 // - proposalID: ID of the proposal where the vote must be submitted
 // - vote: A string with choice to vote
-func Vote(proposalID uint64, vote string) string {
+func Vote(_ realm, proposalID uint64, vote string) string {
     // Check that the original caller is a member of the DAO
     caller := runtime.OriginCaller()
     assertIsMember(caller)

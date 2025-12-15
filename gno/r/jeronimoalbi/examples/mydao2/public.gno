@@ -12,7 +12,7 @@ import (
 // Arguments:
 // - title: A title for the proposal
 // - description: A description for the proposal
-func CreateGeneralProposal(title, description string) uint64 {
+func CreateGeneralProposal(_ realm, title, description string) uint64 {
 	// Proposal description and title are required
 	assertTitleIsNotEmpty(title)
 	assertDescriptionIsNotEmpty(description)
@@ -42,7 +42,7 @@ func CreateGeneralProposal(title, description string) uint64 {
 // g187982000zsc493znqt828s90cmp6hcp2erhu6m
 // g1jg8mtutu9khhfwc4nxmuhcpftf0pajdhfvsqf5
 // ```
-func CreateModifyMembersProposal(newMembers, removeMembers string) uint64 {
+func CreateModifyMembersProposal(_ realm, newMembers, removeMembers string) uint64 {
 	// Check that the original caller is a member of the DAO
 	caller := runtime.OriginCaller()
 	assertIsMember(caller)
@@ -71,7 +71,7 @@ func CreateModifyMembersProposal(newMembers, removeMembers string) uint64 {
 // Arguments:
 // - proposalID: ID of the proposal where the vote must be submitted
 // - vote: A string with choice to vote
-func Vote(proposalID uint64, vote string) string {
+func Vote(_ realm, proposalID uint64, vote string) string {
 	// Check that the original caller is a member of the DAO
 	caller := runtime.OriginCaller()
 	assertIsMember(caller)
@@ -98,7 +98,7 @@ func Vote(proposalID uint64, vote string) string {
 }
 
 // Execute executes active proposals.
-func Execute(proposalID uint64) string {
+func Execute(_ realm, proposalID uint64) string {
 	caller := runtime.OriginCaller()
 	assertIsMember(caller)
 
