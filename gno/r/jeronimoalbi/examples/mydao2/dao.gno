@@ -5,8 +5,8 @@ import "gno.land/p/nt/commondao"
 var myDAO = commondao.New(
 	commondao.WithSlug("mydao"),
 	commondao.WithName("MyDAO"),
-	commondao.WithMember("g1lyzcpa7duh69lk04nahxup484xrz4k6k2nqdun"),
-	commondao.WithMember("g125t352u4pmdrr57emc4pe04y40sknr5ztng5mt"),
+	commondao.WithMember("g1hy6zry03hg5d8le9s2w4fxme6236hkgd928dun"),
+	commondao.WithMember("g1jg8mtutu9khhfwc4nxmuhcpftf0pajdhfvsqf5"),
 	commondao.WithMember("g1zzc479zj8taxd5e4g5mydg4rkpmujg7uflrj8p"),
 )
 
