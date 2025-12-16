@@ -60,7 +60,7 @@ type modifyMembersDefinition struct {
 }
 
 func (p modifyMembersDefinition) Title() string             { return "Modify Members" }
-func (modifyMembersDefinition) VotingPeriod() time.Duration { return time.Hour }
+func (modifyMembersDefinition) VotingPeriod() time.Duration { return time.Hour * 24 * 7 }
 
 func (p modifyMembersDefinition) Body() string {
     var b strings.Builder

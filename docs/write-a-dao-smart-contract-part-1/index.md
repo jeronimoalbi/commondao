@@ -260,7 +260,7 @@ type generalDefinition struct {
 
 func (p generalDefinition) Title() string             { return p.title }
 func (p generalDefinition) Body() string              { return p.description }
-func (generalDefinition) VotingPeriod() time.Duration { return time.Hour }
+func (generalDefinition) VotingPeriod() time.Duration { return time.Hour * 24 * 4 }
 
 func (generalDefinition) Tally(ctx commondao.VotingContext) (bool, error) {
     // Check if a quorum of 50% has been met
