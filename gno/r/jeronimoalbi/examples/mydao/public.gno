@@ -45,19 +45,18 @@ func Vote(_ realm, proposalID uint64, vote string) string {
 
 	p := mustGetProposal(proposalID)
 	choice := commondao.VoteChoice(vote)
-
-	// When the voted choice is invalid use a custom error that display valid choices
-	if !p.IsVoteChoiceValid(choice) {
-		var choices []string
-		for _, c := range p.VoteChoices() {
-			choices = append(choices, string(c))
-		}
-
-		panic("invalid vote choice, valid choices: " + strings.Join(choices, ", "))
-	}
-
 	err := myDAO.Vote(caller, p.ID(), choice, "")
 	if err != nil {
+		// When the voted choice is invalid use a custom error message to display valid choices
+		if err == commondao.ErrInvalidVoteChoice {
+			var choices []string
+			for _, c := range p.VoteChoices() {
+				choices = append(choices, string(c))
+			}
+
+			panic("invalid vote choice, valid choices: " + strings.Join(choices, ", "))
+		}
+
 		panic(err)
 	}
 
